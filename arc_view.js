@@ -278,7 +278,7 @@ var ArcView = {
 												.select("circle")
 												.style("fill", "none");
 										}
-										else { // add the visual element and the item tp the list
+										else { // add the visual element and the item to the list
 											// add class
 											d3.select(this).classed("selected", true);
 
@@ -296,6 +296,36 @@ var ArcView = {
 													.style("fill", Database.factorColour);
 											}
 											self.chosenVariables.push(variableSelected);
+										}
+
+										// change the select all toggle
+										if (self.chosenVariables.length == 0) { // no selection, select all is shown
+											// change class of text
+											containter.select(".select-toggle-group")
+														.select("text")
+														.classed("select-all", true)
+														.text("Click to select all");
+
+											// leave the circle hollow
+											containter.select(".select-toggle-group")
+														.select("circle")
+														.style("fill", "none");
+
+											console.log(self.chosenVariables)
+										}
+										else { // has selection, select none
+											// add class and change text to select none
+											containter.select(".select-toggle-group")
+														.select("text")
+														.classed("select-all", false)
+														.text("Click to select none");
+
+											// fill in the circle
+											containter.select(".select-toggle-group")
+														.select("circle")
+														.style("fill", "black");
+
+											console.log(self.chosenVariables)
 										}
 									});
 
@@ -352,6 +382,7 @@ var ArcView = {
 
 		// draw select command
 		var selectGroup = containter.append("g")
+									.attr("class", "select-toggle-group")
 									.attr("transform", "translate(0, " + (nameScale(Database.varName.length) + 3) + ")");
 
 		selectGroup.append("circle")
