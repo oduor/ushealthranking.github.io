@@ -310,8 +310,6 @@ var ArcView = {
 											containter.select(".select-toggle-group")
 														.select("circle")
 														.style("fill", "none");
-
-											console.log(self.chosenVariables)
 										}
 										else { // has selection, select none
 											// add class and change text to select none
@@ -324,8 +322,6 @@ var ArcView = {
 											containter.select(".select-toggle-group")
 														.select("circle")
 														.style("fill", "black");
-
-											console.log(self.chosenVariables)
 										}
 									});
 
